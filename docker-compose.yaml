@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  news-bot:
+    build: .
+    container_name: news_digest_bot
+    # Перезапускать контейнер автоматически, если он упал или после перезагрузки сервера.
+    restart: unless-stopped
+
+    env_file:
+      - .env
+
+    volumes:
+      - ./config.xlsx:/app/config.xlsx:ro
+      - ./data:/app/data
